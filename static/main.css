@@ -1,0 +1,385 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    line-height: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+label,
+button,
+select,
+input[type=radio] {
+    cursor: pointer;
+}
+
+button,
+a {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75em;
+    border: 0;
+    text-align: center;
+    color: white;
+    background-color: hsl(200, 100%, 40%);
+    text-transform: uppercase;
+    text-decoration: none;
+    text-shadow: 0 0 0.25rem black;
+    transition: background-color 0.25s;
+}
+
+button:focus,
+button:hover,
+a:focus,
+a:hover {
+    background-color: hsl(200, 50%, 50%);
+}
+
+.secondary {
+    background-color: hsl(45, 100%, 30%);
+}
+
+.secondary:focus,
+.secondary:hover {
+    background-color: hsl(45, 100%, 25%);
+}
+
+.index ul,
+.search ul,
+.quiz-index ul {
+    list-style-type: none;
+}
+
+.index li + li,
+.search li + li,
+.quiz-index li + li {
+    margin-top: 0.5rem;
+}
+
+input,
+select {
+    padding: 0.25em 0.5em;
+}
+
+html {
+    padding: 1.5rem;
+    line-height: 1;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 800;
+    background-image: url("map.jpg");
+    background-size: cover;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50rem;
+}
+
+nav {
+    text-align: center;
+}
+
+nav ul {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    position: relative;
+}
+
+nav li {
+    display: block;
+}
+
+nav a {
+    display: block;
+    padding: 1rem;
+    color: white;
+    background-color: hsl(200, 100%, 40%);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-shadow: 0 0 0.25rem black;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: background-color 0.25s;
+}
+
+main {
+    overflow: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    font-size: 1.25rem;
+    background-color: hsl(60, 100%, 80%);
+    box-shadow: 0 0 1rem hsla(0, 0%, 0%, 0.5), inset 0 0 0.5rem white;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+footer {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+}
+
+footer,
+footer form,
+footer p {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+footer > * + *,
+footer form > * + *,
+footer p > * + * {
+    margin-left: 0.5rem;
+}
+
+.flag-title {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+
+.question {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 1rem;
+}
+
+.quiz .quiz-title {
+    grid-column: span 2;
+    grid-row: 1;
+    align-self: center;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.prompt {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.25;
+}
+
+.flag {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.flag img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+.options {
+    grid-column: span 2;
+    grid-row: 3;
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.options button {
+    height: 100%;
+    font-size: 1.25rem;
+}
+
+.options button:disabled {
+    background-color: hsl(0, 0%, 20%);
+}
+
+.options button.correct:disabled {
+    background-color: hsl(120, 100%, 30%);
+}
+
+.options button.incorrect.guess {
+    background-color: hsl(0, 50%, 50%);
+}
+
+.next {
+    grid-column: span 2;
+    grid-row: 4;
+    font-size: 1.25rem;
+}
+
+.next:disabled {
+    color: hsl(0, 0%, 50%);
+    background-color: hsl(0, 0%, 20%);
+}
+
+.flags p {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.flag-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.flag-gallery img {
+    display: block;
+    width: 100%;
+}
+
+.search form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.search input {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.search p {
+    margin-bottom: 1rem;
+}
+
+.quiz-index form {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.quiz-index input[type=number] {
+    width: 3em;
+}
+
+.quiz-index p {
+    margin-bottom: 1rem;
+}
+
+.login label,
+.register label {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.login label span,
+.register label span {
+    text-align: right;
+    padding-right: 0.5rem;
+}
+
+.login button,
+.register button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login p,
+.register p {
+    margin-bottom: 1rem;
+}
+
+.login strong,
+.register strong {
+    display: block;
+    padding: 1rem;
+    color: hsl(60, 100%, 50%);
+    background-color: hsl(0, 75%, 50%);
+}
+
+.create fieldset {
+    border: 0;
+}
+
+.create fieldset {
+    border-top: 0.125rem solid hsl(45, 100%, 30%);
+    padding-top: 1rem;
+}
+
+.create .quiz-title,
+.create .quiz-public,
+.create .question-prompt,
+.create .question-flag {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.create ul {
+    list-style-type: none;
+}
+
+.create li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.create button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.create .secondary {
+    width: 100%;
+}
+
+.create .secondary {
+    margin-bottom: 1rem;
+}
+
+.result {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.result.big {
+    font-size: 3rem;
+}
+
+.result > * + * {
+    margin-top: 1rem;
+}

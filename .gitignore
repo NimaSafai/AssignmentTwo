@@ -1,0 +1,6 @@
+/.idea
+/target
+/*.iml
+*.db
+# ;)
+/assignment-two-solutions.md

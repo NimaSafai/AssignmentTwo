@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<keys>
+    <!-- Note: DO NOT let these keys leak. They are PRIVATE keys for services/APIs that we will integrate with in the
+     future. -->
+    <service>
+        <name>Google</name>
+        <key>1fca87960aadb4b39c1a2baa3fdf2f17</key>
+    </service>
+    <service>
+        <name>Microsoft</name>
+        <key>88b420cb9d1e4fe220a965cd0d4eb874</key>
+    </service>
+    <service>
+        <name>Apple</name>
+        <key>58f964818460ca8d78cb94df8356864a</key>
+    </service>
+</keys>
