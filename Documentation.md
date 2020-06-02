@@ -93,29 +93,7 @@ Thus, the fixed code looks like this:
             
 With the help of this fix, the error message that is returned is: _"No quiz with ID 5--, or you are not allowed to access this quiz."_
 
-[Great success!](https://www.myinstants.com/media/instants_images/boratgs.jpg)
-
-##
-
-# SQL Injection (2 of 2)
-
-_This is the documentation for the second SQL Injection safety vulnerability that we have found in the Assignment code._
-
-## Exploit
-
-1.
-
-2.
-
-3.
-
-## Vulnerability
-
-Text
-
-## Fix
-
-Text
+[Great success!](https://i.pinimg.com/originals/d3/90/c2/d390c243d97ad215ad83e6dc6f2dda56.jpg)
 
 ##
 
@@ -129,15 +107,30 @@ _This is the documentation for the first one of the XSS safety vulnerabilities t
 
 2. Type a script in the search bar, e.g. `<script>alert("You've been hacked!")</script>`.
 
-3. When pressing ENTER, the code is run and - in this case - an alert pops up with the text `You've been hacked!`
+3. When pressing ENTER, the code is run and - in this case - an alert pops up with the text `You've been hacked!` which indicates that the code is vulnerable to XSS attacks.
 
 ## Vulnerability
 
-Text
+The most common types of cross-site scripting comes from taking advantage of user inputs. Thus, any point in our code where there are user inputs can immediately be targeted and if they're not properly secured, they can be taken advantage of.
+The vulnerability in our code lies within this snippet:
+
+    if (context.queryParam("search") != null) {
+            content +=
+                "<p>Search results for: " + context.queryParam("search") + "</p>" +
+                "<ul>";
+
+NB: it is specifically `context.queryParam("search")` that contains the vulnerability. It's currently un-encoded which completely leaves our code vulnerable to XSS payloads.
+
 
 ## Fix
 
 Text
+
+    if (context.queryParam("search") != null) {
+            // Show what term the user searched for.
+            content += 
+                    "<p>Search results for: " + Encode.forHtml(context.queryParam("search")) + "</p>" +
+                "<ul>";
 
 ##
 
@@ -157,28 +150,34 @@ _This is the documentation for the second XSS safety vulnerability that we have 
 
 Text
 
+    try (Connection c = db.getConnection()) {
+            String title = context.formParam("quiz-title");
+            boolean isPublic = context.formParam("quiz-public") != null;
+            PreparedStatement s1 = c.prepareStatement(
+                "INSERT INTO quiz (user_id, title, datetime, public) VALUES (?, ?, ?, ?)",
+                Statement.RETURN_GENERATED_KEYS
+            );
+            s1.setInt(1, context.sessionAttribute("userId"));
+            s1.setString(2, title);
+            s1.setString(3, LocalDateTime.now().toString());
+            s1.setBoolean(4, isPublic);
+            s1.executeUpdate();
+
 ## Fix
 
 Text
+
+    try (Connection c = db.getConnection()) {
+            String title = context.formParam("quiz-title");
+            boolean isPublic = context.formParam("quiz-public") != null;
+            PreparedStatement s1 = c.prepareStatement(
+                "INSERT INTO quiz (user_id, title, datetime, public) VALUES (?, ?, ?, ?)",
+                Statement.RETURN_GENERATED_KEYS
+            );
+            s1.setInt(1, context.sessionAttribute("userId"));
+            s1.setString(2,Encode.forHtml(title));
+            s1.setString(3, LocalDateTime.now().toString());
+            s1.setBoolean(4, isPublic);
+            s1.executeUpdate();
 
 ##
-
-# XSS (3 of 3)
-
-_This is the documentation for the third and last XSS safety vulnerability that we have found in the Assignment code._
-
-## Exploit
-
-1.
-
-2.
-
-3.
-
-## Vulnerability
-
-Text
-
-## Fix
-
-Text

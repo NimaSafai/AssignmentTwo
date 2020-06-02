@@ -225,7 +225,7 @@ public class AssignmentTwoServer {
 
     // Show a list of all the quizzes.
     private static void quizListPage(Context context) throws SQLException {
-        String content =
+        String  content =
             "<div class='quiz-index'>" +
                 "<h1>\uD83C\uDFB2 Play</h1>" +
                 "<form method='get' action='/play'>" +
@@ -250,7 +250,7 @@ public class AssignmentTwoServer {
         content += "<ul>";
 
         try (Connection c = db.getConnection()) {
-            // Select all the quizzes that are public, as well as the private quizzes belongin to the current user.
+            // Select all the quizzes that are public, as well as the private quizzes belonging to the current user.
             String sql =
                 "SELECT quiz.id AS quiz_id, title, username, public, COUNT(*) AS question_count " +
                 "FROM quiz " +
@@ -368,7 +368,7 @@ public class AssignmentTwoServer {
         if (context.queryParam("search") != null) {
             // Show what term the user searched for.
             content +=
-                "<p>Search results for: " + context.queryParam("search") + "</p>" +
+                    "<p>Search results for: " + Encode.forHtml(context.queryParam("search")) + "</p>" +
                 "<ul>";
 
             try (Connection c = db.getConnection()) {
