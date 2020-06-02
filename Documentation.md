@@ -125,11 +125,11 @@ _This is the documentation for the first one of the XSS safety vulnerabilities t
 
 ## Exploit
 
-1.
+1. Go to the Search page.
 
-2.
+2. Type a script in the search bar, e.g. `<script>alert("You've been hacked!")</script>`.
 
-3.
+3. When pressing ENTER, the code is run and - in this case - an alert pops up with the text `You've been hacked!`
 
 ## Vulnerability
 
@@ -147,11 +147,11 @@ _This is the documentation for the second XSS safety vulnerability that we have 
 
 ## Exploit
 
-1.
+1. Go to the Create page to create a new quiz.
 
-2.
+2. As the title of your quiz, type a script, such as `<script>alert("You've been hacked again!")</script>`. Create the quiz.
 
-3.
+3. Then, whenever the Play tab is clicked (or http://localhost:7000/play is accessed), an alert pops up saying `You've been hacked again!`
 
 ## Vulnerability
 
