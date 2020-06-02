@@ -44,7 +44,10 @@ The addition of an if statement allows us to return an error message, like such:
 
             return;
         }
-        
+
+
+This protects our code against a directory traversal. [Fantastic!](https://i.imgur.com/p4pWnIk.gif)
+
 ##
         
 # SQL Injection (1 of 2)
@@ -68,10 +71,8 @@ Looking at the source code, we can easily find the vulnerability in this snippet
             Statement quizStatement = c.createStatement();
             String quizSql =
                 "SELECT * FROM quiz " +
-                // Either the current user owns the quiz and can access it whether it's public or not.
                 "WHERE id = " + context.pathParam("quiz_id") + " " +
                 "AND user_id = " + context.sessionAttribute("userId") + " " +
-                // Or it's public and anybody can access it.
                 "OR public = TRUE AND id = " + context.pathParam("quiz_id");
             ResultSet quizRows = quizStatement.executeQuery(quizSql);
 
@@ -93,7 +94,7 @@ Thus, the fixed code looks like this:
             
 With the help of this fix, the error message that is returned is: _"No quiz with ID 5--, or you are not allowed to access this quiz."_
 
-[Great success!](https://i.pinimg.com/originals/d3/90/c2/d390c243d97ad215ad83e6dc6f2dda56.jpg)
+[Problem solved.](https://media.giphy.com/media/fm5JqspHFgIXm/200.gif)
 
 ##
 
@@ -124,13 +125,16 @@ NB: it is specifically `context.queryParam("search")` that contains the vulnerab
 
 ## Fix
 
-Text
+As mentioned above, the part of the code which takes the user input for the Search function isn't encoded, which leaves it vulnerable. These types of vulnerabilities have a very easy fix and it is by simply adding `Encode.forHtml()` to the code.
+In our case, we want to encode the user input which comes from `context.queryParam("search)`, so all of that gets encapsulated in our method parentheses like so:
 
     if (context.queryParam("search") != null) {
             // Show what term the user searched for.
             content += 
                     "<p>Search results for: " + Encode.forHtml(context.queryParam("search")) + "</p>" +
                 "<ul>";
+
+So now, with this fix, no alert pops up when we type in `<script>alert("You've been hacked!")</script>` in the Search field. Instead, we're faced with the single line `Search results for: <script>alert("You've been hacked!")</script>` and nothing else.
 
 ##
 
@@ -144,11 +148,12 @@ _This is the documentation for the second XSS safety vulnerability that we have 
 
 2. As the title of your quiz, type a script, such as `<script>alert("You've been hacked again!")</script>`. Create the quiz.
 
-3. Then, whenever the Play tab is clicked (or http://localhost:7000/play is accessed), an alert pops up saying `You've been hacked again!`
+3. Then, whenever the Play tab is clicked (_or http://localhost:7000/play is accessed in any way, such as through the Filter function_), an alert pops up saying `You've been hacked again!`
 
 ## Vulnerability
 
-Text
+This vulnerability is basically the same as the other XSS attack that I documented here above. It has to do with the user input not being encoded, as we type the script in the field where the Quiz title is supposed to go. With the proper fix, the script shouldn't be read as anything but pure text, but in our case it's immediately parsed as the script that it is. 
+The vulnerability lies in this snippet of code and specifically in the fourth from last line in the code, `s1.setString(2, title);`. That's the user input that goes into our code and as we can see, it's not encoded.
 
     try (Connection c = db.getConnection()) {
             String title = context.formParam("quiz-title");
@@ -165,7 +170,8 @@ Text
 
 ## Fix
 
-Text
+The fix of this vulnerability is the same as the one before, so I won't go into too much detail about it. It is simply by adding `Encode.forHtml()` and sending our `title` through it that makes sure that our user input is properly encoded and thus not vulnerable to any XSS payloads.
+Here's how the code looks when fixed:
 
     try (Connection c = db.getConnection()) {
             String title = context.formParam("quiz-title");
@@ -179,5 +185,7 @@ Text
             s1.setString(3, LocalDateTime.now().toString());
             s1.setBoolean(4, isPublic);
             s1.executeUpdate();
+
+[Perfect.](https://25.media.tumblr.com/c9954bbae4c124ae9bbeefededd39fda/tumblr_miok00iHvu1rlf0uqo3_250.gif)
 
 ##
