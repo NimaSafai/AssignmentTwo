@@ -189,3 +189,12 @@ Here's how the code looks when fixed:
 [Perfect.](https://25.media.tumblr.com/c9954bbae4c124ae9bbeefededd39fda/tumblr_miok00iHvu1rlf0uqo3_250.gif)
 
 ##
+
+
+## SÄKERHETSPRINCIPER
+
+Det här stycket ämnar att besvara frågan "Vilka är de viktigaste lärdomarna och principerna om säkerhet som du kommer att ta med dig från denna kurs?"
+
+Egentligen skulle jag vilja säga att jag tar med mig alla olika typer av säkerhetshål som vi har lärt oss om; men mer specifikt handlar det om den nästan morbida fascinationen kring det hela. Inte nog med att man kan göra ofantligt stor skada med olika typer av attacker, men också faktumet att det finns så många olika typer av attacker och olika sätt man kan orsaka skada genom utnyttjandet av säkerhetshål. Det har gjort att mina ögon verkligen har öppnats upp för ett helt nytt segment inom programmering. 
+Självklart visste jag att säkerhet inom programmering existerade som koncept, men att det skulle vara så här? Aldrig. Nu vet jag vad det faktiskt innebär i reella termer och jag tycker det är hur häftigt och fascinerande som helst. Det lägger till ytterligare en dimension i ens arbete som programmerare och det skapar nya utmaningar och trösklar att ta sig över. "Kan någon hacka det här?" är en fråga som jag kommer ställa mig själv varje gång jag skriver kod fr.o.m. nu!
+Faktumet att vi har fått arbeta så konkret med allt det här har hjälpt otroligt mycket. Det var samma sak med Frontend-kursen; att vi varje lektion hade nya saker att testa och lära oss hjälpte verkligen i att elda på fascinationen som jag kände för ämnet och det har gjort att jag har fortsatt att utforska utanför lektionstiderna. Faktum är att jag redan har tagit med mig min lärdom ut i det verkliga livet! Det är nämligen så att jag samtidigt som plugget jobbar lite extra på möbelföretaget Mio och häromdagen upptäckte jag [ett XSS-hål på deras intranät](https://i.imgur.com/sgdHOYo.jpg), något som jag direkt rapporterade och fick en stor eloge för. Det kändes så kul att få faktiska bevis på att jag har lärt mig saker från den här kursen och det har genuint varit en upplysande kurs som helt och hållet har ändrat min syn på programmering.
