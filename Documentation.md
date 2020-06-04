@@ -94,7 +94,7 @@ Thus, the fixed code looks like this:
             
 With the help of this fix, the error message that is returned is: _"No quiz with ID 5--, or you are not allowed to access this quiz."_
 
-[Problem solved.](https://media.giphy.com/media/fm5JqspHFgIXm/200.gif)
+[Problem solved.](https://i.giphy.com/media/fm5JqspHFgIXm/200.gif)
 
 ##
 
@@ -134,7 +134,8 @@ In our case, we want to encode the user input which comes from `context.queryPar
                     "<p>Search results for: " + Encode.forHtml(context.queryParam("search")) + "</p>" +
                 "<ul>";
 
-So now, with this fix, no alert pops up when we type in `<script>alert("You've been hacked!")</script>` in the Search field. Instead, we're faced with the single line `Search results for: <script>alert("You've been hacked!")</script>` and nothing else.
+So now, with this fix, no alert pops up when we type in `<script>alert("You've been hacked!")</script>` in the Search field. Instead, we're faced with the single line `Search results for: <script>alert("You've been hacked!")</script>` and nothing else. [Done!](https://media1.giphy.com/media/11mmuBkgP2Du48/source.gif)
+
 
 ##
 
@@ -186,7 +187,7 @@ Here's how the code looks when fixed:
             s1.setBoolean(4, isPublic);
             s1.executeUpdate();
 
-[Perfect.](https://25.media.tumblr.com/c9954bbae4c124ae9bbeefededd39fda/tumblr_miok00iHvu1rlf0uqo3_250.gif)
+[Perfect.](https://66.media.tumblr.com/c9954bbae4c124ae9bbeefededd39fda/tumblr_miok00iHvu1rlf0uqo3_250.gif)
 
 ##
 
